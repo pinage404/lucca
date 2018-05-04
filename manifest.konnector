@@ -36,17 +36,17 @@
     }
   },
   "developer": {
-    "name": "",
-    "url": ""
+    "name": "sebdalink",
+    "url": "https://github.com/sebdalink"
   },
   "langs": ["fr", "en"],
   "locales": {
     "fr": {
-      "short_description": "Récupérer vos données Lucca dans votre Cozy",
-      "long_description": "Récupérer vos données Lucca dans votre Cozy",
+      "short_description": "Récupérer vos fiches de paie depuis Lucca (Pagga) dans votre Cozy",
+      "long_description": "Récupérer vos données Lucca (Pagga) dans votre Cozy",
       "permissions": {
         "files": {
-          "description": "Utilisé pour sauvegarder les documents fichiers"
+          "description": "Utilisé pour sauvegarder les fiches de paie"
         },
         "accounts": {
           "description": "Utilisé pour obtenir les données du compte"
@@ -54,11 +54,11 @@
       }
     },
     "en": {
-      "short_description": "Fetch your Payfit data in your Cozy",
-      "long_description": "Fetch your Payfit data in your Cozy",
+      "short_description": "Fetch your Lucca (Pagga) payslips in your Cozy",
+      "long_description": "Fetch your Lucca (Pagga) payslips in your Cozy",
       "permissions": {
         "files": {
-          "description": "Required to save the bills"
+          "description": "Required to save the payslips"
         },
         "accounts": {
           "description": "Required to get the account's data"
