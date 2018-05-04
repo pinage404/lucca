@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "name": "Connector template",
+  "name": "Lucca",
   "type": "konnector",
   "language": "node",
   "icon": "icon.png",
-  "slug": "template",
-  "source": "git://github.com/konnectors/cozy-konnector-template.git",
-  "editor": "Cozy",
+  "slug": "lucca",
+  "source": "git://github.com/konnectors/lucca.git",
+  "editor": "",
   "vendor_link": "https://www.lucca.fr",
   "categories": ["other"],
   "fields": {
@@ -26,7 +26,6 @@
   "data_types": [
     "documents"
   ],
-  "screenshots": [ "screenshots/screenshot1.png" ],
   "permissions": {
     "files": {
       "type": "io.cozy.files"
@@ -37,18 +36,15 @@
     }
   },
   "developer": {
-    "name": "Cozy",
-    "url": "https://cozy.io"
+    "name": "",
+    "url": ""
   },
   "langs": ["fr", "en"],
   "locales": {
     "fr": {
-      "short_description": "Template de connecteur",
-      "long_description": "Ce template récupère une liste de livres sur un site de scraping",
+      "short_description": "Récupérer vos données Lucca dans votre Cozy",
+      "long_description": "Récupérer vos données Lucca dans votre Cozy",
       "permissions": {
-        "books": {
-          "description": "Utilisé pour sauvegarder les références des livres"
-        },
         "files": {
           "description": "Utilisé pour sauvegarder les documents fichiers"
         },
@@ -58,12 +54,9 @@
       }
     },
     "en": {
-      "short_description": "Connector template",
-      "long_description": "This template fetches a list of books from a scraping website",
+      "short_description": "Fetch your Payfit data in your Cozy",
+      "long_description": "Fetch your Payfit data in your Cozy",
       "permissions": {
-        "books": {
-          "description": "Required to save the file documents"
-        },
         "files": {
           "description": "Required to save the bills"
         },
