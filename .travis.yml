@@ -3,12 +3,11 @@ node_js:
   - '8'
 env:
   global:
-    # cozy-bot GITHUB_TOKEN
-    # to generate yours : travis encrypt GITHUB_TOKEN=<your_GITHUB_TOKEN>
-    - secure: "xaLq2aQ9uAx+q66yt39piMzJnPs3ql2syRz8pR9ZAHF+7393MtdkLsf7rJgw2OdzScOjOdMEf1qI9XRXzwptfnr7oBRcSlMsLeqtKE8JqSfoh71zJGpJ0AMi9DEHH4491yoHeYXcb8RFpra3viKge9eNSfblLGjLi/uIN7XeU4Tb+N/HKiTrtjDEFiwHYG6P/qWPLOVMs5P71Dki9v/NaJYpxP6c4efMG9YoL869S/7P6vX2mQf7o0cxMMZiQwxfi/pEGNXOmYKI93iLtJ2Ccvysz/hxGbu2yPxQHnYh9bPtkjAFy/uP2/kI+mrSZWGFStWuS49ZLLHwFw62iBZzhIWUgwZFX9/NAy2dxxb63wrgyYli33hYMseDgN/D84fM4R49Mp3278IPM3uedEMqGMVxzQvDnXUgAxTYKH9WCt0dEFJmq1ZHd+gR4WSKKF3GQRTcH7CY0VGQL51QRWjKp5AyyeSwLyuoia1UKK8mWjX58t6S+xW99tKYncAb84BrgtswD2UZZIXMblp1riW0JgCiD217NDtIe/uKgPzv/7A5Am6lS16FKC4T/8NzaMsY+8dhvWBuKPl0SQv7CHQG+BLDiBkMhErh8irqUSMrWkLhaAyjMm5e9Hzr35Subz33+ry1K5WDNEGSQIVX+5xow1XpWOvVzNLmFFpIvgX2wZA="
+    - GH_USER_EMAIL="travis@example.org"
+    - GH_USER_NAME="cozy-bot"
+    - DEPLOY_REPOSITORY="git@github.com:konnectors/lucca.git"
     # Cozy REGISTRY_TOKEN
     - secure: "UzWQx+Px7eYSOCs+tQ71GtFbOHr6nBr7GUFMRy/FD96dy0qfQxA+2KwGmluyqgIMQ9ptWtQzIt5KuyZ/2+YnPBqjSITnwCfWPHgwNkd0Q83Ad7VU/i1PjPU78KYsd4JZ5GHUuarSWuPiQfBuI4aIRyGlhHR4/3NfrTg1+52MGEVcLDrrKwz+aYYnMr+A7k2o5kXFyA6n7nvjlAYRpKNDOuVJMkzEWa1HjBelFt/fdThUsvkQLpKBn13+OU0p3ng1rYXsTbQK9Yn+H2LVZQCqfwzdNKSlTaEdoN3ZBSJD8H7kSph40YE5oiAErdamKK1zECFKt+x8TzcERK3HHOJHqzPjg8EBhdgxHgshRS+Dl3ZsszLzrEemE5xnOrIias3WxSXIZKLc5R5CMjmGzCAc1MOAqN0gRO9kwLF08mmQA1IPV4a+Yt9dagRleNJIePstwTpy4tLIpZel8WATW6k61GiO8BndwdNEW1YJQtwNdYr6cQ8L/ymCF5hjgVWexgdRWey1hmXpi+0LJjSatU4M3IxaD8/uSN1XLTRoSywUAXE0qMVA3Ilfb16jEkNRgY/fb8hB/Jyc4oUZemZscsKwVjtMwsARWyxv2pSiage7iZS+TK0ixxjGBlSDqSxld5hUig8EqKHfSXNnycdYuASMrZsXmH9v5vDATse5Wqgg/G4="
-
 cache:
   yarn: true
   directories:
@@ -19,22 +18,24 @@ script:
 deploy:
   # publish dev versions
   - provider: script
-    repo: konnectors/lucca
     skip-cleanup: true
     script: DEPLOY_BRANCH=build yarn deploy && yarn cozyPublish
     on:
       branch: master
   # publish on latest branch (will be removed when collect will use only the registry
   - provider: script
-    repo: konnectors/lucca
     skip-cleanup: true
     script: DEPLOY_BRANCH=latest yarn deploy
     on:
       branch: prod
   # publish stable versions and beta versions based on tags
   - provider: script
-    repo: konnectors/lucca
     skip-cleanup: true
     script: DEPLOY_BRANCH=build yarn deploy && yarn cozyPublish
     on:
       tags: true
+before_install:
+  - openssl aes-256-cbc -K $encrypted_22c1689fb673_key -iv $encrypted_22c1689fb673_iv -in github_deploy_key.enc -out /tmp/github_deploy_key -d
+  - eval "$(ssh-agent -s)"
+  - chmod 600 /tmp/github_deploy_key
+  - ssh-add /tmp/github_deploy_key
