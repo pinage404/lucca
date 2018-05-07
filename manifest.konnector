@@ -1,0 +1,69 @@
+{
+  "version": "1.0.0",
+  "name": "Lucca",
+  "type": "konnector",
+  "language": "node",
+  "icon": "icon.png",
+  "slug": "lucca",
+  "source": "git://github.com/konnectors/lucca.git",
+  "editor": "",
+  "vendor_link": "https://www.lucca.fr",
+  "categories": ["other"],
+  "fields": {
+    "login": {
+      "type": "text"
+    },
+    "password": {
+      "type": "password"
+    },
+    "advancedFields": {
+      "folderPath": {
+        "advanced": true,
+        "isRequired": false
+      }
+    }
+  },
+  "data_types": [
+    "documents"
+  ],
+  "permissions": {
+    "files": {
+      "type": "io.cozy.files"
+    },
+    "accounts": {
+      "type": "io.cozy.accounts",
+      "verbs": ["GET"]
+    }
+  },
+  "developer": {
+    "name": "sebdalink",
+    "url": "https://github.com/sebdalink"
+  },
+  "langs": ["fr", "en"],
+  "locales": {
+    "fr": {
+      "short_description": "Récupérer vos fiches de paie depuis Lucca (Pagga) dans votre Cozy",
+      "long_description": "Récupérer vos données Lucca (Pagga) dans votre Cozy",
+      "permissions": {
+        "files": {
+          "description": "Utilisé pour sauvegarder les fiches de paie"
+        },
+        "accounts": {
+          "description": "Utilisé pour obtenir les données du compte"
+        }
+      }
+    },
+    "en": {
+      "short_description": "Fetch your Lucca (Pagga) payslips in your Cozy",
+      "long_description": "Fetch your Lucca (Pagga) payslips in your Cozy",
+      "permissions": {
+        "files": {
+          "description": "Required to save the payslips"
+        },
+        "accounts": {
+          "description": "Required to get the account's data"
+        }
+      }
+    }
+  }
+}
