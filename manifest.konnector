@@ -6,7 +6,7 @@
   "icon": "icon.png",
   "slug": "lucca",
   "source": "git://github.com/konnectors/lucca.git",
-  "editor": "",
+  "editor": "sebdalink",
   "vendor_link": "https://www.lucca.fr",
   "categories": ["other"],
   "fields": {
