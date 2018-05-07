@@ -1,4 +1,4 @@
-[Cozy][cozy] <YOUR SUPER NEW KONNECTOR NAME>
+[Cozy][cozy] Lucca (Pagga) connector
 =======================================
 
 What's Cozy?
@@ -11,7 +11,9 @@ What's Cozy?
 What's this new konnector?
 --------------------------
 
-<YOUR DESCRIPTION HERE>
+This connector fetches the PDF pay statements from the Lucca (Pagga) web site.
+
+There is no parsing of the amounts or things like that at the moment and then no link is possible with bank operations at the moment.
 
 ### Open a Pull-Request
 
@@ -23,7 +25,7 @@ This connector uses [cozy-konnector-libs](https://github.com/cozy/cozy-konnector
 
 ### Maintainer
 
-The lead maintainers for this konnector is <YOUR NAME>
+The lead maintainers for this konnector are @sebdalink and @doubleface
 
 
 ### Get in touch
@@ -39,7 +41,7 @@ You can reach the Cozy Community by:
 License
 -------
 
-<YOUR KONNECTOR NAME> is developed by <your name> and distributed under the [AGPL v3 license][agpl-3.0].
+Lucca konnector is developed by @sebdalink and distributed under the [AGPL v3 license][agpl-3.0].
 
 [cozy]: https://cozy.io "Cozy Cloud"
 [agpl-3.0]: https://www.gnu.org/licenses/agpl-3.0.html
