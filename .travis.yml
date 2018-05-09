@@ -1,41 +1,40 @@
 language: node_js
 node_js:
-  - '8'
+- '8'
 env:
   global:
-    - GH_USER_EMAIL="travis@example.org"
-    - GH_USER_NAME="cozy-bot"
-    - DEPLOY_REPOSITORY="git@github.com:konnectors/lucca.git"
-    # Cozy REGISTRY_TOKEN
-    - secure: "UzWQx+Px7eYSOCs+tQ71GtFbOHr6nBr7GUFMRy/FD96dy0qfQxA+2KwGmluyqgIMQ9ptWtQzIt5KuyZ/2+YnPBqjSITnwCfWPHgwNkd0Q83Ad7VU/i1PjPU78KYsd4JZ5GHUuarSWuPiQfBuI4aIRyGlhHR4/3NfrTg1+52MGEVcLDrrKwz+aYYnMr+A7k2o5kXFyA6n7nvjlAYRpKNDOuVJMkzEWa1HjBelFt/fdThUsvkQLpKBn13+OU0p3ng1rYXsTbQK9Yn+H2LVZQCqfwzdNKSlTaEdoN3ZBSJD8H7kSph40YE5oiAErdamKK1zECFKt+x8TzcERK3HHOJHqzPjg8EBhdgxHgshRS+Dl3ZsszLzrEemE5xnOrIias3WxSXIZKLc5R5CMjmGzCAc1MOAqN0gRO9kwLF08mmQA1IPV4a+Yt9dagRleNJIePstwTpy4tLIpZel8WATW6k61GiO8BndwdNEW1YJQtwNdYr6cQ8L/ymCF5hjgVWexgdRWey1hmXpi+0LJjSatU4M3IxaD8/uSN1XLTRoSywUAXE0qMVA3Ilfb16jEkNRgY/fb8hB/Jyc4oUZemZscsKwVjtMwsARWyxv2pSiage7iZS+TK0ixxjGBlSDqSxld5hUig8EqKHfSXNnycdYuASMrZsXmH9v5vDATse5Wqgg/G4="
+  - GH_USER_EMAIL="travis@example.org"
+  - GH_USER_NAME="cozy-bot"
+  - DEPLOY_REPOSITORY="git@github.com:konnectors/lucca.git"
+  - secure: UzWQx+Px7eYSOCs+tQ71GtFbOHr6nBr7GUFMRy/FD96dy0qfQxA+2KwGmluyqgIMQ9ptWtQzIt5KuyZ/2+YnPBqjSITnwCfWPHgwNkd0Q83Ad7VU/i1PjPU78KYsd4JZ5GHUuarSWuPiQfBuI4aIRyGlhHR4/3NfrTg1+52MGEVcLDrrKwz+aYYnMr+A7k2o5kXFyA6n7nvjlAYRpKNDOuVJMkzEWa1HjBelFt/fdThUsvkQLpKBn13+OU0p3ng1rYXsTbQK9Yn+H2LVZQCqfwzdNKSlTaEdoN3ZBSJD8H7kSph40YE5oiAErdamKK1zECFKt+x8TzcERK3HHOJHqzPjg8EBhdgxHgshRS+Dl3ZsszLzrEemE5xnOrIias3WxSXIZKLc5R5CMjmGzCAc1MOAqN0gRO9kwLF08mmQA1IPV4a+Yt9dagRleNJIePstwTpy4tLIpZel8WATW6k61GiO8BndwdNEW1YJQtwNdYr6cQ8L/ymCF5hjgVWexgdRWey1hmXpi+0LJjSatU4M3IxaD8/uSN1XLTRoSywUAXE0qMVA3Ilfb16jEkNRgY/fb8hB/Jyc4oUZemZscsKwVjtMwsARWyxv2pSiage7iZS+TK0ixxjGBlSDqSxld5hUig8EqKHfSXNnycdYuASMrZsXmH9v5vDATse5Wqgg/G4=
 cache:
   yarn: true
   directories:
-    - node_modules
+  - node_modules
 script:
-  - yarn lint
-  - yarn build
+- yarn lint
+- yarn build
 deploy:
-  # publish dev versions
-  - provider: script
-    skip-cleanup: true
-    script: DEPLOY_BRANCH=build yarn deploy && yarn cozyPublish
-    on:
-      branch: master
-  # publish on latest branch (will be removed when collect will use only the registry
-  - provider: script
-    skip-cleanup: true
-    script: DEPLOY_BRANCH=latest yarn deploy
-    on:
-      branch: prod
-  # publish stable versions and beta versions based on tags
-  - provider: script
-    skip-cleanup: true
-    script: DEPLOY_BRANCH=build yarn deploy && yarn cozyPublish
-    on:
-      tags: true
+- provider: script
+  skip-cleanup: true
+  script: DEPLOY_BRANCH=build yarn deploy && yarn cozyPublish
+  on:
+    branch: master
+- provider: script
+  skip-cleanup: true
+  script: DEPLOY_BRANCH=latest yarn deploy
+  on:
+    branch: prod
+- provider: script
+  skip-cleanup: true
+  script: DEPLOY_BRANCH=build yarn deploy && yarn cozyPublish
+  on:
+    tags: true
 before_install:
-  - openssl aes-256-cbc -K $encrypted_22c1689fb673_key -iv $encrypted_22c1689fb673_iv -in github_deploy_key.enc -out /tmp/github_deploy_key -d
-  - eval "$(ssh-agent -s)"
-  - chmod 600 /tmp/github_deploy_key
-  - ssh-add /tmp/github_deploy_key
+- openssl aes-256-cbc -K $encrypted_22c1689fb673_key -iv $encrypted_22c1689fb673_iv
+  -in package.json.enc -out package.json -d
+- openssl aes-256-cbc -K $encrypted_22c1689fb673_key -iv $encrypted_22c1689fb673_iv
+  -in github_deploy_key.enc -out /tmp/github_deploy_key -d
+- eval "$(ssh-agent -s)"
+- chmod 600 /tmp/github_deploy_key
+- ssh-add /tmp/github_deploy_key
