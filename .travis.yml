@@ -1,0 +1,41 @@
+language: node_js
+node_js:
+- '8'
+env:
+  global:
+  - GH_USER_EMAIL="travis@example.org"
+  - GH_USER_NAME="cozy-bot"
+  - DEPLOY_REPOSITORY="git@github.com:konnectors/lucca.git"
+  - secure: gANeCBWEN2lW0ECyKNg6zwxqzMgEfr4sGR3pXMflVK7IVAep88mrnLQ0OdvkoC9Wsk6S7VZRjFj4Jez+CLRPIky1prGKPL5yfmgsQL08UlNvt7n8eSUYfiphfkXqQuFHQOkW2Qo9vdBA3xTLjOb6+gpjQ9cObCayaL5ynvi6Yg1ko3jiPnZi80oXGu80Gh/kpQzBzSNyCFBHYkX59Y0nAJc1vE+gffQXaPrf/fS6XoKJFy/QAoLke5JEZHkJnD7cTGaGIkwhT/UnS2qRFmzPlimIyrHfyeSbq7rW+f52VQ5ynGdnQbJqCYVISto7m5xb7b0UPUFBtIFQUslNecq6XY9hF+LVz+LQaJ1gwqk7RTEkYOc2YalzdWXyFUYvoIMKEJZpy0A6jW772MS2PRx82n+SNjOTiINL8c8SDGSS2hzGk55YHBrpHGwyVLAD4aUcEXizy5E4X69k/B5bCw8GBaJQeOLtHn8a0vBG/nEAr3aQZIhIvdNZWBwN4rMI/jOjpbbTegww3PbbyQeqQ+7yDsoEFLbtiuzCP6PvnuWKlgDdKTT9HN/xfcIc+4uPRn+pLVfHnmciT5LTs28aBkVxJnlSoNJb5WQClXh+9EmlZ8v2e5TxFrEY9W47COYR+SESkOnRgZyAE/ee6QtpA94Mm6cQvArkktVTu0dZUT1S8HI=
+cache:
+  yarn: true
+  directories:
+  - node_modules
+branches:
+  except:
+  - build
+  - latest
+script:
+- yarn lint
+- yarn build
+- yarn run check
+deploy:
+- provider: script
+  skip-cleanup: true
+  script: DEPLOY_BRANCH=build yarn deploy && yarn cozyPublish
+  on:
+    branch: master
+- provider: script
+  skip-cleanup: true
+  script: DEPLOY_BRANCH=build yarn deploy && yarn cozyPublish
+  on:
+    tags: true
+before_install:
+- openssl aes-256-cbc -K $encrypted_22c1689fb673_key -iv $encrypted_22c1689fb673_iv
+  -in github_deploy_key.enc -out /tmp/github_deploy_key -d
+- eval "$(ssh-agent -s)"
+- chmod 600 /tmp/github_deploy_key
+- ssh-add /tmp/github_deploy_key
+after_deploy:
+- rm /tmp/github_deploy_key
+- ssh-add -D
