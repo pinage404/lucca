@@ -19,7 +19,7 @@
     "serviceInstanceUrl": {
       "type": "text",
       "required": false
-    }
+    },
     "advancedFields": {
       "folderPath": {
         "advanced": true,
