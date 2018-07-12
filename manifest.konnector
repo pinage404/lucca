@@ -16,7 +16,7 @@
     "password": {
       "type": "password"
     },
-    "serviceInstanceUrl": {
+    "loginUrl": {
       "type": "text",
       "required": false
     },
