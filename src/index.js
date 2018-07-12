@@ -29,22 +29,22 @@ async function start(fields) {
 }
 
 async function checkLoginInfos(fields) {
-  log('info', 'Check if serviceInstanceUrl exists on fields')
+  log('info', 'Check if loginUrl exists on fields')
 
   if (
-    fields.hasOwnProperty('serviceInstanceUrl') &&
-    fields.serviceInstanceUrl
+    fields.hasOwnProperty('loginUrl') &&
+    fields.loginUrl
   ) {
     log(
       'info',
-      'serviceInstanceUrl exists, so use it and skip fetching company details'
+      'loginUrl exists, so use it and skip fetching company details'
     )
-    companyInstanceUrl = fields.serviceInstanceUrl
+    companyInstanceUrl = fields.loginUrl
     userLogin = fields.login
   } else {
     log(
       'info',
-      "serviceInstanceUrl doesn't exists, log in to get user company details..."
+      "loginUrl doesn't exists, log in to get user company details..."
     )
     try {
       const details = await request({
