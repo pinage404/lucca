@@ -1,5 +1,5 @@
 {
-  "version": "1.0.2",
+  "version": "1.0.3",
   "name": "Lucca",
   "type": "konnector",
   "language": "node",
@@ -15,6 +15,10 @@
     },
     "password": {
       "type": "password"
+    },
+    "loginUrl": {
+      "type": "text",
+      "required": false
     },
     "advancedFields": {
       "folderPath": {
