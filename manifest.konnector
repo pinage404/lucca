@@ -18,7 +18,7 @@
     },
     "loginUrl": {
       "type": "text",
-      "required": false
+      "isRequired": false
     },
     "advancedFields": {
       "folderPath": {
