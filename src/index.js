@@ -31,14 +31,8 @@ async function start(fields) {
 async function checkLoginInfos(fields) {
   log('info', 'Check if loginUrl exists on fields')
 
-  if (
-    fields.hasOwnProperty('loginUrl') &&
-    fields.loginUrl
-  ) {
-    log(
-      'info',
-      'loginUrl exists, so use it and skip fetching company details'
-    )
+  if (fields.hasOwnProperty('loginUrl') && fields.loginUrl) {
+    log('info', 'loginUrl exists, so use it and skip fetching company details')
     companyInstanceUrl = fields.loginUrl
     userLogin = fields.login
   } else {
@@ -61,11 +55,12 @@ async function checkLoginInfos(fields) {
     } catch (err) {
       if (
         err.statusCode === 404 &&
-        err.error.Message &&
-        err.error.Message.includes('Wrong password')
+        err.error.message &&
+        err.error.message.includes('Wrong password')
       ) {
         throw new Error(errors.LOGIN_FAILED)
       } else {
+        log('error', JSON.stringify(err.error))
         throw new Error(errors.VENDOR_DOWN)
       }
     }
