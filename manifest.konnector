@@ -1,5 +1,5 @@
 {
-  "version": "1.1.0",
+  "version": "1.2.0",
   "name": "Lucca",
   "type": "konnector",
   "language": "node",
@@ -8,7 +8,9 @@
   "source": "git://github.com/konnectors/lucca.git",
   "editor": "sebdalink",
   "vendor_link": "https://www.lucca.fr",
-  "categories": ["other"],
+  "categories": [
+    "other"
+  ],
   "fields": {
     "login": {
       "type": "text"
@@ -36,14 +38,19 @@
     },
     "accounts": {
       "type": "io.cozy.accounts",
-      "verbs": ["GET"]
+      "verbs": [
+        "GET"
+      ]
     }
   },
   "developer": {
     "name": "sebdalink",
     "url": "https://github.com/sebdalink"
   },
-  "langs": ["fr", "en"],
+  "langs": [
+    "fr",
+    "en"
+  ],
   "locales": {
     "fr": {
       "short_description": "Récupérer vos fiches de paie depuis Lucca (Pagga) dans votre Cozy",
