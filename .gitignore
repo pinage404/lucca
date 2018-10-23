@@ -3,6 +3,7 @@
 .token.json
 konnector-dev-config.json*
 fixtures/*
+data/*
 
 # NPM
 node_modules/
@@ -11,9 +12,6 @@ yarn-error.log
 
 # Build
 build/
-
-# Data
-data/
 
 # OS generated files
 .DS_Store
@@ -34,5 +32,3 @@ desktop.ini
 # Default
 # /!\ KEEP THIS SECTION THE LAST ONE
 !.gitkeep
-
-*.pdf
