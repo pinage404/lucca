@@ -12,6 +12,7 @@ const request = requestFactory({
   jar: true
 })
 const moment = require('moment')
+moment.locale('fr')
 
 const baseStartUrl = 'https://www.lucca.fr'
 let companyInstanceUrl
@@ -108,7 +109,7 @@ async function getPayslips() {
   })
 
   return payslipsInfos.data.items.map(function(payslip) {
-    const url = companyInstanceUrl + '/pagga/download/' + payslip.id
+    const url = companyInstanceUrl + '/pagga/services/download/' + payslip.id
     const date = moment(payslip.import.endDate, moment.ISO_8601)
     const filename = date.format('YYYY_MM') + '.pdf'
 
