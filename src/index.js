@@ -26,6 +26,25 @@ async function start(fields) {
   await checkLoginInfos(fields)
   await logIn(fields)
   const payslips = await getPayslips()
+
+  // Some companies activate 2FA 6 digits to download files, not implemented
+  // We test it here
+  if (payslips.length > 0) {
+    try {
+      await request(payslips[0].fileurl)
+    } catch (e) {
+      if (
+        e.statusCode === 400 &&
+        e.message.includes('6 digit security code has been activated')
+      ) {
+        log('error', e)
+        log('error', 'Not implemented in konnector')
+        throw 'USER_ACTION_NEEDED.TWOFA_NEEDED'
+      } else {
+        throw e
+      }
+    }
+  }
   await saveFiles(payslips, fields)
 }
 
