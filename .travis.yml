@@ -3,7 +3,6 @@ node_js:
 - '12'
 env:
   global:
-  - DEPLOY_REPOSITORY="git@github.com:konnectors/lucca.git"
   - secure: gANeCBWEN2lW0ECyKNg6zwxqzMgEfr4sGR3pXMflVK7IVAep88mrnLQ0OdvkoC9Wsk6S7VZRjFj4Jez+CLRPIky1prGKPL5yfmgsQL08UlNvt7n8eSUYfiphfkXqQuFHQOkW2Qo9vdBA3xTLjOb6+gpjQ9cObCayaL5ynvi6Yg1ko3jiPnZi80oXGu80Gh/kpQzBzSNyCFBHYkX59Y0nAJc1vE+gffQXaPrf/fS6XoKJFy/QAoLke5JEZHkJnD7cTGaGIkwhT/UnS2qRFmzPlimIyrHfyeSbq7rW+f52VQ5ynGdnQbJqCYVISto7m5xb7b0UPUFBtIFQUslNecq6XY9hF+LVz+LQaJ1gwqk7RTEkYOc2YalzdWXyFUYvoIMKEJZpy0A6jW772MS2PRx82n+SNjOTiINL8c8SDGSS2hzGk55YHBrpHGwyVLAD4aUcEXizy5E4X69k/B5bCw8GBaJQeOLtHn8a0vBG/nEAr3aQZIhIvdNZWBwN4rMI/jOjpbbTegww3PbbyQeqQ+7yDsoEFLbtiuzCP6PvnuWKlgDdKTT9HN/xfcIc+4uPRn+pLVfHnmciT5LTs28aBkVxJnlSoNJb5WQClXh+9EmlZ8v2e5TxFrEY9W47COYR+SESkOnRgZyAE/ee6QtpA94Mm6cQvArkktVTu0dZUT1S8HI=
 cache:
   yarn: true
@@ -16,7 +15,6 @@ branches:
 script:
 - yarn lint
 - yarn build
-- yarn run check
 deploy:
 - provider: script
   skip-cleanup: true
