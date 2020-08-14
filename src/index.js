@@ -51,7 +51,10 @@ async function start(fields) {
 async function checkLoginInfos(fields) {
   log('info', 'Check if loginUrl exists on fields')
 
-  if (fields.hasOwnProperty('loginUrl') && fields.loginUrl) {
+  if (
+    Object.prototype.hasOwnProperty.call(fields, 'loginUrl') &&
+    fields.loginUrl
+  ) {
     log('info', 'loginUrl exists, so use it and skip fetching company details')
     companyInstanceUrl = fields.loginUrl
     userLogin = fields.login
