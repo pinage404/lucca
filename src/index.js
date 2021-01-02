@@ -6,7 +6,7 @@ const {
   errors
 } = require('cozy-konnector-libs')
 const request = requestFactory({
-  //cheerio: true
+  // cheerio: true
   debug: false,
   json: true,
   jar: true
